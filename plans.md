@@ -9,7 +9,10 @@ Además, el proyecto debe cumplir con los siguientes requisitos:
 * **Uso rápido e intuitivo:** Cada función en la aplicación debe ser fácil de usar
 
 ### Frontend (Interfaz de usuario)
+
+
 ### Backend y persistencia de datos
+
 
 ## Modelo de datos (Estructuras JSON)
 Cada entidad será almacenada en un archivo Json que guarde la información del usuario en los siguientes archivos:
@@ -51,19 +54,19 @@ Cada entidad será almacenada en un archivo Json que guarde la información del 
     "Rutina":[
         {
             "id": 1,
-            "descripción": "Desayunar",
+            "descripcion": "Desayunar",
             "status": "Completado",
             "hora": "09:00"
         },
         {
             "id": 2,
-            "descripción": "Pasear",
+            "descripcion": "Pasear",
             "status": "Completado",
             "hora": "11:30"
         },
         {
             "id": 3,
-            "descripción": "Comer",
+            "descripcion": "Comer",
             "status": "Pendiente",
             "hora": "14:00"
         }
@@ -72,25 +75,40 @@ Cada entidad será almacenada en un archivo Json que guarde la información del 
 }
 ```
 
+* `descripcion` indica qué se hace en la actividad.
+* `ubicacion` indica dónde se hace la actividad.
+* `fecha` y `hora` indican cuando se hace la actividad y estan en formato `dd-mm-yyyy` y `hh:mm` respectivamente.
+* `status` indica si una actividad de la rutina está completada o no.
+
 ### Entidad: Medicación (medicacion.json)
 ```json
 {
     "Medicacion":[
         {
             "id": 1,
-            "nombre": "Paracetamol"
+            "nombre": "Paracetamol",
+            "dosis": "500mg",
+            "status": "Activa"
         },
         {
             "id": 2,
-            "nombre": "Melatonina"
+            "nombre": "Melatonina",
+            "dosis": null,
+            "status": "Activa"
         },
         {
             "id": 3,
-            "nombre": "Sertralina"
-        },
+            "nombre": "Sertralina",
+            "dosis": "50mg",
+            "status": "Inactiva"
+        }
     ]
 }
 ```
+
+* `nombre` 
+* `dosis` indica la cantidad de medicamento en mg que se debe tomar. Si `dosis` es `null` quiere decir que el medicamento no tiene registrado una 
+* `status` indica si la medicación sigue estando activa o no.
 
 ### Entidad: Contactos de emergencia (contactos.json)
 ```json
@@ -98,12 +116,12 @@ Cada entidad será almacenada en un archivo Json que guarde la información del 
     "Contactos":[
         {
             "id": 1,
-            "nombre": "Hijo",
+            "nombre": "Javi (Hijo)",
             "telefono": "+34 600 123 456"
         },
         {
             "id": 2,
-            "nombre": "Nieto",
+            "nombre": "Carlos (Nieto)",
             "telefono": "+34 600 999 970"
         },
         {
@@ -115,6 +133,11 @@ Cada entidad será almacenada en un archivo Json que guarde la información del 
 }
 ```
 
+* `nombre` indica quién es el contacto. Se pueden usar nombres reales o nombres descriptivos como: Hijo, Cuñado, Yerno...
+* `telefono` indica a qué número se debe llamar en caso de emergencia.
+
+-----------------------------------------------------------------------------
+En todos, `id` es un entero que indentifica a cada entidad. El siguiente, siempre será `max(id) + 1` o `1` en caso de no haber una entidad.
 
 ## Flujos de usuario
 ### Flujo principal: Gestión del día a día
