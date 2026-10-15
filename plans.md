@@ -9,10 +9,10 @@ Además, el proyecto debe cumplir con los siguientes requisitos:
 * **Uso rápido e intuitivo:** Cada función en la aplicación debe ser fácil de usar
 
 ### Frontend (Interfaz de usuario)
-
+La interfaz visual debe ser intuitiva y fácil de usar.
 
 ### Backend y persistencia de datos
-
+El backend debe conectar correctamente los datos de los archivos `.json` con la interfaz.
 
 ## Modelo de datos (Estructuras JSON)
 Cada entidad será almacenada en un archivo Json que guarde la información del usuario en los siguientes archivos:
@@ -106,8 +106,8 @@ Cada entidad será almacenada en un archivo Json que guarde la información del 
 }
 ```
 
-* `nombre` 
-* `dosis` indica la cantidad de medicamento en mg que se debe tomar. Si `dosis` es `null` quiere decir que el medicamento no tiene registrado una 
+* `nombre` indica cual medicamento es.
+* `dosis` indica la cantidad de medicamento en mg que se debe tomar. Si `dosis` es `null` quiere decir que el medicamento no tiene registrada una dosis específica.
 * `status` indica si la medicación sigue estando activa o no.
 
 ### Entidad: Contactos de emergencia (contactos.json)
@@ -141,24 +141,92 @@ En todos, `id` es un entero que indentifica a cada entidad. El siguiente, siempr
 
 ## Flujos de usuario
 ### Flujo principal: Gestión del día a día
+El usuario seguirá el siguiente recorrido para su rutina diaria:
+1. Inicio
+2. Consultar el día
+3. Ver agenda y rutina
+4. Seleccionar una actividad
+5. Realizar actividad
+6. Marcar como completada
+7. Siguiente actividad / recordatorio
+8. Fin del día
+
 ### Flujos secundarios: Medicación, citas y comunicación
+* **Medicación:** Inicio → Medicación → Ver medicamento → Recordatorio → Confirmar toma.
+* **Cita médica:** Inicio → Agenda → Cita médica → Ver información → Recordatorio.
+* **Comunicación:** Inicio → Comunicación → Seleccionar contacto → Enviar mensaje / realizar llamada.
 
 ## Estructura de vistas (Wireframes)
-Las diferentes pantallas deben verse de manera clara 
+Las diferentes pantallas deben verse de manera clara y ser intuitivos de usar.
+
+Esto debe mostrar cada pantalla:
 
 ### Pantalla 1 — Inicio
+Vista general del día:
+* Fecha y hora
+* Próxima actividad
+* Rutina del día
+* Próximo medicamento
+* Próxima cita
+* Acceso rápido a comunicación
 
 ### Pantalla 2 — Agenda
+Un calendario sencillo donde el usuario pueda consultar:
+* Actividades
+* Citas
+* Medicación
+* Eventos importantes
 
 ### Pantalla 3 — Rutina
+Debe aparecer una lista de las actividades diarias que se repiten cada día.
+Ejemplo:
+- 08:15 - Desayunar
+- 09:00 - Medicación
+- 11:00 - Paseo
+- 13:00 - Comida
+- 21:00 - Dormir
 
-### Pantallas 4, 5 y 6 — Medicación, Citas médicas y Comunicación
+### Pantalla 4 — Medicación
+Información clara sobre:
+* Nombre del medicamento
+* Hora
+* Dosis
+* Próxima dosis
+* Confirmación
 
+### Pantalla 5 - Citas médicas
+Lista de próximas citas con:
+* Fecha
+* Hora
+* Médico/profesional
+* Lugar
+* Recordatorio
+
+### Pantalla 6 - Comunicación
+Acceso sencillo a personas importantes:
+* Familiares
+* Cuidadores
+* Profesionales
+* Contactos de emergencias
+
+El usuario podrá seleccionar un contacto para hacer una llamada o enviar un mensaje
 
 ## Decisiones técnicas y de diseño UX/UI
 ### Principios de simplicidad y claridad visual
+La aplicación utilizará una agenda visual con información clara y sencilla. Todo debe ser predecible para ofrecer una sensación de seguridad y tranquilidad al usuario. Las rutinas deben tener una estructura marcada, mostrando únicamente la información que sea relevante para su día a día y permitiendo la personalización de la interfaz. 
+
 ### Prevención de riesgos (sobrecarga, notificaciones e infantilización)
+* **Sobrecarga y estrés:** Se evitará una app excesivamente compleja y la estimulación constante. Las notificaciones no deben ser molestas ni generar estrés.
+* **Tono y autonomía:** No se debe hacer sentir al usuario dependiente ni infantilizado. No se les tratará como si no pudieran tomar decisiones, promoviendo siempre su autonomía y seguridad.
 
 ## Estrategia de tests y validación
 ### Criterios de evaluación de usabilidad
+Las pruebas se centrarán en evaluar los siguientes aspectos clave:
+* **Facilidad de navegación:** Comprobar si el usuario se pierde entre las opciones, le cuesta encontrar funciones o navega sin problemas.
+* **Claridad de los textos e iconos:** Evaluar si no entiende algunos iconos, si los textos son confusos o si resultan claros e intuitivos.
+* **Facilidad para organizar una actividad:** Observar si sabe cómo añadir actividades o si necesita ayuda para organizarse.
+* **Comprensión de los recordatorios:** Analizar si entiende para qué sirven y si los utiliza correctamente.
+* **Facilidad para encontrar la opción de ayuda:** Medir cuánto tarda en localizar el botón de contacto o ayuda.
+
 ### Ejecución de pruebas con usuarios reales
+Se realizarán pruebas con distintos perfiles de usuario (Usuario 1, 2, 3, etc.) utilizando una tabla de observación directa. Se registrarán los bloqueos y aciertos en cada uno de los criterios de usabilidad mencionados para ajustar la interfaz y mejorar la experiencia antes de la versión final.
