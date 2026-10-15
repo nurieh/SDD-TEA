@@ -115,3 +115,99 @@ Comprobar manualmente que cada requisito funciona con los 3 perfiles ficticios:
 - **Sin roles ni permisos:** la información médica es visible para cualquier usuario que acceda. Los permisos están pendientes de decidir según `spec.md` (sección 3.3 y duda pendiente 5).
 - **Figma pendiente:** el diseño visual no ha podido compararse con el prototipo porque el enlace no está disponible en `spec.md`.
 - **Pruebas automáticas:** no se han implementado por restricción explícita del proyecto.
+
+## Resultados T-11 a T-14
+
+**Fecha:** Junio 2025  
+**Tipo de verificación:** Revisión estática del código fuente  
+
+---
+
+### T-11 — Pruebas de requisitos funcionales
+
+Estado: **hecho**
+
+Todos los requisitos funcionales RF-01 a RF-06 han sido verificados por revisión estática del código:
+
+- **RF-01 (listado):** `renderizarTarjetas()` itera el array y genera una tarjeta por perfil con nombre completo e ID. El estado vacío (`length === 0`) muestra "No hay perfiles disponibles."
+- **RF-02 (ficha datos personales):** `renderizarDatosPersonales()` limpia el contenedor antes de renderizar, garantizando que no haya mezcla entre perfiles. `mostrarFicha()` busca por `p.id === idPerfil`.
+- **RF-03 (campos vacíos):** `valorONoDisponible()` convierte `null`, `undefined` y `''` en "No disponible". La clase CSS `no-disponible` aplica cursiva.
+- **RF-04 (sección médica):** `renderizarSeccionMedica()` muestra grado TEA, informe médico y medicación. Si `medicacion` es array vacío, muestra "No disponible".
+- **RF-05 (navegación):** `mostrarFicha()` y `mostrarListado()` alternan `hidden`. El botón Volver llama `mostrarListado()`.
+- **RF-06 (estado vacío):** comprobado en `renderizarTarjetas()`.
+
+**Pendiente de navegador:** prueba P-13 (flujo completo listado → ficha → volver → ficha diferente sin mezcla de datos).
+
+---
+
+### T-12 — Pruebas de casos especiales
+
+Estado: **hecho**
+
+Todos los casos CL-01 a CL-07 han sido verificados por revisión estática:
+
+- **CL-01:** estado vacío gestionado en `renderizarTarjetas([])`.
+- **CL-02:** `mostrarFicha('X999')` → `perfiles.find()` devuelve `undefined` → `mostrarError('No se encontró el perfil solicitado.')`.
+- **CL-03:** P002 tiene `correo: ""` → `valorONoDisponible('')` → "No disponible".
+- **CL-04:** P003 tiene `medicacion: []` → `hayMedicacion` es `false` → "No disponible".
+- **CL-05:** No aplica con los datos actuales (nombres distintos). La lógica diferencia por ID, no por nombre.
+- **CL-06:** `cargarPerfiles()` captura la excepción del `fetch` y llama `mostrarError()` con mensaje descriptivo. Se distingue el error de CORS/`file://`.
+- **CL-07:** P003 tiene `patron: ""` → `valorONoDisponible('')` → "No disponible".
+
+**Pendiente de navegador:** CL-06b (abrir con `file://` y confirmar que aparece el mensaje de CORS).
+
+---
+
+### T-13 — Revisión de accesibilidad y diseño
+
+Estado: **hecho** (revisión estática completada; pendientes de herramientas externas)
+
+#### Resultados positivos verificados por código
+
+- `body { font-size: 18px }` — texto base sobre el mínimo de 16px.
+- `min-height: 44px` en todos los botones — cumple el criterio de área táctil mínima.
+- Sin `onclick` inline en HTML — todos los eventos vía `addEventListener`.
+- `role="alert"` y `aria-live="assertive"` en zona de errores.
+- `aria-label` descriptivo en cada botón de tarjeta (generado dinámicamente en JS).
+- `aria-label="Volver al listado de perfiles"` en el botón de volver.
+- `type="button"` en todos los botones.
+- Jerarquía de encabezados correcta: `<h1>` en header, `<h2>` en secciones.
+- Landmarks semánticos: `<header>`, `<main>`, `<section>`, `<article>`.
+- Contraste de colores verificado manualmente — todos superan WCAG AA (4.5:1).
+- `textContent` en lugar de `innerHTML` para datos externos (sin riesgo de XSS).
+- `valorONoDisponible()` garantiza que ningún campo visible queda vacío.
+
+#### Problemas encontrados y corregidos
+
+1. **`aria-live="polite"` en `#vista-ficha`** — eliminado. Un `aria-live` en un contenedor grande produce anuncios verbosos. La gestión de navegación no requiere live regions; solo la zona de errores las necesita.
+2. **`<nav class="nav-ficha">`** — cambiado a `<div>`. El `<nav>` debe contener grupos de enlaces, no un único botón de acción.
+3. **`<nav id="contenedor-tarjetas">`** — cambiado a `<div>`. Las tarjetas con botones de acción no forman una zona de navegación; `<nav>` aquí es incorrecto semánticamente.
+
+#### Pendiente de herramientas externas
+
+- Navegación por teclado (Tab, Enter, Space): requiere prueba en navegador.
+- Validación HTML W3C: requiere herramienta externa.
+- Comparación con prototipo Figma: enlace no disponible en `spec.md`.
+
+---
+
+### T-14 — Preparación de la revisión final
+
+Estado: **hecho**
+
+- `tasks.md` actualizado con el estado de T-05 a T-14.
+- `IA/implementacion-mvp.md` actualizado con esta sección.
+- `tests/pruebas-manuales.md` creado con la tabla completa de pruebas (T-11 a T-13).
+- Errores conocidos documentados: 3 correcciones de accesibilidad aplicadas en `index.html`.
+- Pruebas pendientes de navegador: P-13 (flujo completo) y CL-06b (fallo CORS real).
+
+---
+
+### Archivos creados o modificados en T-11 a T-14
+
+| Acción | Archivo | Motivo |
+|--------|---------|--------|
+| Modificado | `index.html` | 3 correcciones de accesibilidad/semántica |
+| Creado | `tests/pruebas-manuales.md` | Documento de pruebas manuales T-11 a T-13 |
+| Modificado | `tasks.md` | Estado de tareas actualizado |
+| Modificado | `IA/implementacion-mvp.md` | Sección de resultados añadida |

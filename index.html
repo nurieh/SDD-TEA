@@ -26,15 +26,15 @@
     <div id="indicador-carga" hidden>
       <p>Cargando perfiles...</p>
     </div>
-    <nav id="contenedor-tarjetas" aria-label="Listado de perfiles">
+    <div id="contenedor-tarjetas" aria-label="Listado de perfiles" role="list">
       <!-- Las tarjetas de perfil se generan dinámicamente desde app.js -->
-    </nav>
+    </div>
   </main>
 
   <!-- Vista de ficha de perfil (oculta por defecto) -->
-  <section id="vista-ficha" hidden aria-live="polite">
+  <section id="vista-ficha" hidden>
 
-    <nav class="nav-ficha">
+    <div class="nav-ficha">
       <button
         id="boton-volver"
         type="button"
@@ -42,7 +42,7 @@
       >
         ← Volver
       </button>
-    </nav>
+    </div>
 
     <!-- Datos personales -->
     <article id="datos-personales">
