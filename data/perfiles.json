@@ -1,0 +1,52 @@
+[
+  {
+    "id": "P001",
+    "nombre": "Carmen",
+    "apellidos": "Morales Rubio",
+    "correo": "carmen.morales@ejemplo.com",
+    "fecha_nacimiento": "1952-03-14",
+    "estado_civil": "Viuda",
+    "patron": "Necesita rutinas fijas y avisos visuales previos a cambios",
+    "info_medica": {
+      "perfil_id": "P001",
+      "grado_tea": "Nivel 1 - Necesita apoyo",
+      "informe_medico": "Informe revisado en enero de 2024. Sin cambios relevantes.",
+      "medicacion": [
+        "Sertralina 50mg (mañana)",
+        "Melatonina 2mg (noche)"
+      ]
+    }
+  },
+  {
+    "id": "P002",
+    "nombre": "José",
+    "apellidos": "Fernández Lara",
+    "correo": "",
+    "fecha_nacimiento": "1948-11-07",
+    "estado_civil": "",
+    "patron": "Prefiere instrucciones paso a paso y entorno sin ruidos",
+    "info_medica": {
+      "perfil_id": "P002",
+      "grado_tea": "Nivel 2 - Necesita apoyo sustancial",
+      "informe_medico": "Última revisión en marzo de 2023.",
+      "medicacion": [
+        "Risperidona 1mg (noche)"
+      ]
+    }
+  },
+  {
+    "id": "P003",
+    "nombre": "Ana",
+    "apellidos": "García Torres",
+    "correo": "ana.garcia@ejemplo.com",
+    "fecha_nacimiento": "1960-06-22",
+    "estado_civil": "Casada",
+    "patron": "",
+    "info_medica": {
+      "perfil_id": "P003",
+      "grado_tea": "Nivel 1 - Necesita apoyo",
+      "informe_medico": "",
+      "medicacion": []
+    }
+  }
+]

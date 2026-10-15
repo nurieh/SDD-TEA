@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MiPerfil TEA</title>
+  <link rel="stylesheet" href="css/estilos.css">
+</head>
+<body>
+
+  <!-- Encabezado común de la aplicación -->
+  <header>
+    <h1>MiPerfil TEA</h1>
+    <p class="subtitulo-header">Consulta de perfiles de personas atendidas</p>
+  </header>
+
+  <!-- Zona de mensajes de error globales -->
+  <div id="mensaje-error" role="alert" aria-live="assertive" hidden>
+    <p id="texto-error"></p>
+    <button id="boton-cerrar-error" type="button">Cerrar aviso</button>
+  </div>
+
+  <!-- Vista principal: listado de perfiles -->
+  <main id="vista-listado" role="main">
+    <h2>Perfiles disponibles</h2>
+    <div id="indicador-carga" hidden>
+      <p>Cargando perfiles...</p>
+    </div>
+    <nav id="contenedor-tarjetas" aria-label="Listado de perfiles">
+      <!-- Las tarjetas de perfil se generan dinámicamente desde app.js -->
+    </nav>
+  </main>
+
+  <!-- Vista de ficha de perfil (oculta por defecto) -->
+  <section id="vista-ficha" hidden aria-live="polite">
+
+    <nav class="nav-ficha">
+      <button
+        id="boton-volver"
+        type="button"
+        aria-label="Volver al listado de perfiles"
+      >
+        ← Volver
+      </button>
+    </nav>
+
+    <!-- Datos personales -->
+    <article id="datos-personales">
+      <h2>Datos personales</h2>
+      <dl id="lista-datos-personales">
+        <!-- Generado dinámicamente desde app.js -->
+      </dl>
+    </article>
+
+    <!-- Sección médica -->
+    <article id="seccion-medica">
+      <h2>Información médica</h2>
+      <div id="contenido-medico">
+        <!-- Generado dinámicamente desde app.js -->
+      </div>
+    </article>
+
+  </section>
+
+  <script src="js/app.js"></script>
+</body>
+</html>

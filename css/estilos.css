@@ -1,0 +1,300 @@
+/* ===================================================
+   MiPerfil TEA - Hoja de estilos principal
+   Accesibilidad: WCAG AA, sin animaciones, texto grande
+   =================================================== */
+
+/* --- Variables de color --- */
+:root {
+  --color-fondo: #f5f5f5;
+  --color-fondo-tarjeta: #ffffff;
+  --color-fondo-medico: #eef4fb;
+  --color-texto: #1a1a1a;
+  --color-acento: #2a6496;
+  --color-acento-oscuro: #1d4a6e;
+  --color-borde: #c8d4df;
+  --color-error-fondo: #fff3cd;
+  --color-error-borde: #856404;
+  --color-error-texto: #533f03;
+  --color-boton-volver-fondo: #e8f0f7;
+  --color-boton-volver-borde: #2a6496;
+  --color-boton-volver-texto: #1d4a6e;
+}
+
+/* --- Reset básico --- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* --- Base --- */
+body {
+  font-size: 18px;
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--color-fondo);
+  color: var(--color-texto);
+  line-height: 1.6;
+}
+
+/* --- Layout: columna única centrada --- */
+header,
+main,
+section,
+#mensaje-error {
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 1.25rem 1rem;
+}
+
+/* --- Encabezado --- */
+header {
+  background-color: var(--color-acento);
+  color: #ffffff;
+  padding-top: 1.5rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 3px solid var(--color-acento-oscuro);
+}
+
+header h1 {
+  font-size: 1.8rem;
+  font-weight: bold;
+}
+
+.subtitulo-header {
+  font-size: 1rem;
+  margin-top: 0.25rem;
+  color: #d4e8f7;
+}
+
+/* --- Títulos de sección --- */
+h2 {
+  font-size: 1.4rem;
+  color: var(--color-acento-oscuro);
+  margin-bottom: 1rem;
+  margin-top: 0.5rem;
+  border-bottom: 2px solid var(--color-borde);
+  padding-bottom: 0.4rem;
+}
+
+/* --- Zona de mensajes de error --- */
+#mensaje-error {
+  background-color: var(--color-error-fondo);
+  border: 2px solid var(--color-error-borde);
+  border-radius: 6px;
+  color: var(--color-error-texto);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+#mensaje-error p {
+  font-size: 1rem;
+  flex: 1;
+}
+
+#boton-cerrar-error {
+  background-color: var(--color-error-borde);
+  color: #ffffff;
+  border: none;
+  border-radius: 4px;
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  min-height: 44px;
+  min-width: 44px;
+  cursor: pointer;
+}
+
+#boton-cerrar-error:focus {
+  outline: 3px solid var(--color-texto);
+  outline-offset: 2px;
+}
+
+/* --- Indicador de carga --- */
+#indicador-carga p {
+  font-size: 1.1rem;
+  color: var(--color-acento);
+  padding: 1rem 0;
+}
+
+/* --- Listado de perfiles --- */
+#contenedor-tarjetas {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-top: 0.5rem;
+}
+
+/* Estado vacío: sin perfiles */
+.estado-vacio {
+  font-size: 1.1rem;
+  color: #555555;
+  text-align: center;
+  padding: 2rem 0;
+}
+
+/* --- Tarjetas de perfil --- */
+.tarjeta-perfil {
+  background-color: var(--color-fondo-tarjeta);
+  border: 1px solid var(--color-borde);
+  border-radius: 6px;
+  padding: 1rem 1.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.tarjeta-perfil .info-tarjeta {
+  flex: 1;
+}
+
+.tarjeta-perfil .nombre-tarjeta {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: var(--color-texto);
+}
+
+.tarjeta-perfil .id-tarjeta {
+  font-size: 0.95rem;
+  color: #555555;
+  margin-top: 0.2rem;
+}
+
+/* Botón dentro de la tarjeta */
+.boton-ver-ficha {
+  background-color: var(--color-acento);
+  color: #ffffff;
+  border: none;
+  border-radius: 4px;
+  padding: 0.65rem 1.25rem;
+  font-size: 1rem;
+  min-height: 44px;
+  min-width: 44px;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.boton-ver-ficha:focus {
+  outline: 3px solid var(--color-texto);
+  outline-offset: 2px;
+}
+
+/* --- Vista de ficha --- */
+#vista-ficha {
+  padding-bottom: 2rem;
+}
+
+.nav-ficha {
+  margin-bottom: 1.5rem;
+  padding: 0;
+}
+
+/* Botón volver */
+#boton-volver {
+  background-color: var(--color-boton-volver-fondo);
+  color: var(--color-boton-volver-texto);
+  border: 2px solid var(--color-boton-volver-borde);
+  border-radius: 4px;
+  padding: 0.65rem 1.25rem;
+  font-size: 1rem;
+  min-height: 44px;
+  min-width: 44px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+#boton-volver:focus {
+  outline: 3px solid var(--color-texto);
+  outline-offset: 2px;
+}
+
+/* Artículo de datos personales */
+#datos-personales {
+  background-color: var(--color-fondo-tarjeta);
+  border: 1px solid var(--color-borde);
+  border-radius: 6px;
+  padding: 1.25rem;
+  margin-bottom: 1.5rem;
+}
+
+/* Lista de definición: campos personales */
+dl {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0.5rem 1.25rem;
+  margin-top: 0.5rem;
+}
+
+dt {
+  font-weight: bold;
+  color: var(--color-acento-oscuro);
+  padding-top: 0.1rem;
+}
+
+dd {
+  color: var(--color-texto);
+}
+
+/* Valor no disponible */
+.no-disponible {
+  color: #777777;
+  font-style: italic;
+}
+
+/* --- Sección médica --- */
+#seccion-medica {
+  background-color: var(--color-fondo-medico);
+  border: 1px solid var(--color-borde);
+  border-radius: 6px;
+  padding: 1.25rem;
+}
+
+#seccion-medica h2 {
+  color: var(--color-acento-oscuro);
+}
+
+/* Lista de medicación */
+.lista-medicacion {
+  list-style: disc;
+  padding-left: 1.5rem;
+  margin-top: 0.5rem;
+}
+
+.lista-medicacion li {
+  margin-bottom: 0.25rem;
+}
+
+/* Etiqueta de campo en sección médica */
+.etiqueta-medica {
+  font-weight: bold;
+  color: var(--color-acento-oscuro);
+  margin-top: 1rem;
+  margin-bottom: 0.25rem;
+  display: block;
+}
+
+.etiqueta-medica:first-child {
+  margin-top: 0;
+}
+
+/* Valor médico */
+.valor-medico {
+  color: var(--color-texto);
+}
+
+/* --- Clase utilitaria para ocultar elementos desde JS --- */
+.oculto {
+  display: none;
+}
+
+/* --- Focus visible para todos los interactivos --- */
+a:focus,
+button:focus {
+  outline: 3px solid var(--color-texto);
+  outline-offset: 2px;
+}
