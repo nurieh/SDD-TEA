@@ -72,4 +72,71 @@ no se debera asumir que todas las personas mayores con TEA tienen las mismas nec
 
 ## 6. Privacidad y tratamiento de datos
 
-## 7. 
+el asistente debera tratar los datos personales y medicos como informacion sensible
+
+* utilizar datos ficticios durante el desarrollo y pruebas, por lo tanto no debera incluir datos reales en ejemplos de codigo, registros o ca`pturas
+* que la informacion medica no sea accesible para cualquier usuario sin permisos previos
+* no añadir funciones de diagnostico, recomendacion medica o modificacion de tratamiento que no esten aprobadas
+* señalar los riesgos de privacidad y seguridad que detecte
+
+## 7. Flujo de trabajo obligatorio
+
+para cada tarea, el asistente debe seguir este proceso:
+ 1. identificar el requisito y la tarea relacionados
+ 2. Revisar las dependecias y las decisiones tecnicas aplicables
+ 3. comprobar si existe la informacion suficiente para comenzar
+ 4. proponer una solucion limitada al alcance
+ 5. explicar los archivos que se crearan o modificaran
+ 6. implementar los cambios solo cuando se solicite
+ 7. ejecutar las comprobaciones disponibles
+ 8. comparar los resultados con los criterios de aceptacion
+ 9. indicar los errores, limitaciones y pruebas pendientes
+ 10. proponer actualizaciones de la documentacion si algo ha cambiado
+
+## 8. Pruebas y validación
+
+el asistente debera proponer y ejecutar, cuando se disponga d elo necesario, las comprobaciones definidas en el plan.md
+
+como minimo se revisara:
+* comportamiento esperado de las funcionalidades
+* validacion de campos obligatorios y formatos incorrectos
+* geation de datos inexistentes o incompletos
+* mensajes de error y estados alternativos
+* coherencia entre interfaz y requisitos
+* regresion de las funcionalidades ya implementadas
+
+no ha de afirmar que una prueba se ha ejecutado correctamente si no dispone de resultados que lo demuestre
+
+## 9. Gestion de dudas
+
+si falta informacion que se necesita el asistente ha de:
+
+* explicar que datos falta
+* identificar los documentos que afecta
+* formular una pregunta concreta al grupo
+* marcar la decision como pendiente cuando no sea posible resolverla
+* evitar inventar requisitos, tecnologias, permisos, rutas o comportamientos
+
+si puede avanzar en una parte independiente de la tarea, podra hacerlo sin dar por confirmadas las decisiones pendientes
+
+## 10. Comandos de proyecto
+
+los comandos definitivos se estableceran cuando el grupo confime las tecnologias y la estrucuta del repositorio
+
+* instalacion de dependencias: PENDIENTE de confirmar el entorno
+* inicio de la aplicacion: PENDIENTE de confirmar el entorno
+* ejecucion de pruebas: PENDIENTE de confirmar las herramientas
+* comprobación de formato y calidad: PENDIENTE de confirmar las herramientas
+* construccion para entregar: PENDIENTE de confirmar el sistema de despliegue
+
+el asistente debera sustituir estos marcadores por comandos reales cuando se hayan definido y comprobado.
+
+## 11. Criterio de finalizacion
+
+Una tarea solo se considerará terminada cuando:
+
+* Se haya cumplido su criterio de finalización en tasks.md.
+* Los requisitos relacionados sigan siendo coherentes.
+* Se hayan ejecutado las pruebas aplicables o se hayan documentado las pendientes.
+* No se hayan introducido cambios de alcance sin aprobación.
+* El equipo pueda revisar y comprender la solución propuesta.
