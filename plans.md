@@ -1,49 +1,141 @@
-# Plan de accion #
+# Plan técnico y de diseño — MVP Conecta
+Leer `contitution.md` y `spec.md`. Este plan es el cómo. Cada bloque indica qué requisitos cubre.
 
-## Objetivos
+## Estructura del sistema
 **Objetivo Principal:** Crear una aplicación dirigida a personas adultas con TEA para ayudarles a facilitar y organizar su dia a dia (mantener rutinas, recordatorios, facilitar la comunicación...).
 
 Además, el proyecto debe cumplir con los siguientes requisitos:
 * **Claridad visual:** La aplicación debe ser intuitiva visualmente
 * **Uso rápido e intuitivo:** Cada función en la aplicación debe ser fácil de usar
-* **:** 
 
-## Timeline
-* **1ªSemana:** Ideación, diseño y aclarar el objetivo / idea
-* **2ªSemana:** Prototipado inicial de la aplicación
-* **3ªSemana:** Creación de herramientas SDD
-* **4ªSemana:** Revisión y finalización de la aplicación
+### Frontend (Interfaz de usuario)
+### Backend y persistencia de datos
 
-## Tareas
-- [x] Desing Thinking.
-- [x] Prototipado inicial.
-- [x] Retocar prototipo.
-- [ ] Creación de los MarkDown del SDD.
-- [ ] Revisión del contenido de cada MarkDown.
-- [ ] Crear la aplicación final.
-- [ ] Enviar el resultado final y esperar el feedback.
-- [ ] Revisar e implementar el feedback.
-- [ ] Enviar la version definitiva de la aplicación.
+## Modelo de datos (Estructuras JSON)
+Cada entidad será almacenada en un archivo Json que guarde la información del usuario en los siguientes archivos:
 
-## Roles
-- **Nuria *(Líder de proyecto / Coder)*:** Se encarga de la programación frontend del proyecto, coordinar al equipo y comprovar que la aplicación funcione correctamente.
-- **Andrea *(Coder)*:** Se encarga de la programación frontend del proyecto.
-- **Nacho *(Encargado del Git / Coder)*:** Se encarga de la programación backend del proyecto, verificar que el GitHub funcione correctamente y hacer los merges en el mismo.
-- **Adrià *(Coder)*:** Se encarga de la programación backend del proyecto.
+| Contenido | Archivo |
+| :---: | :---: |
+| Actividades y Rutinas | actividades.json |
+| Medicación | medicacion.json |
+| Contactos de emergencia | contactos.json |
 
-## Recursos
-* Respositorio del código: [GitHub](https://github.com/nurieh/SDD-TEA)
-* Prototipo inicial: [Figma](https://www.figma.com/design/wFi1na2A2qm5XPMxFVZVLr/PROYECTO-FINAL-GRUPO-5--FIGMA--NACHO--ANDREA--ADRI%C3%81--NURIA-?node-id=141-82&t=fRxPvPKL9JkQn033-1)
 
-## Riesgos
-* **Riesgo:** El layout puede ser poco intuitivo
-    * *Mitigación:* Rediseñar la interfaz para
+### Entidad: Actividades y Rutinas (actividades.json)
+```json
+{
+    "Agenda":[
+        {
+            "id": 1,
+            "descripcion": "Médico",
+            "ubicacion": "Centro de Salud",
+            "fecha": "09-10-2026",
+            "hora": "10:30"
+        },
+        {
+            "id": 2,
+            "descripcion": "Visita familiar",
+            "ubicacion": "Casa",
+            "fecha": "09-10-2026",
+            "hora": "16:00"
+        },
+        {
+            "id": 3,
+            "descripcion": "Compras",
+            "ubicacion": "Supermercado",
+            "fecha": "10-10-2026",
+            "hora": "11:00"
+        }
+    ],
 
-* **Riesgo:** 
-    * *Mitigación:* 
+    "Rutina":[
+        {
+            "id": 1,
+            "descripción": "Desayunar",
+            "status": "Completado",
+            "hora": "09:00"
+        },
+        {
+            "id": 2,
+            "descripción": "Pasear",
+            "status": "Completado",
+            "hora": "11:30"
+        },
+        {
+            "id": 3,
+            "descripción": "Comer",
+            "status": "Pendiente",
+            "hora": "14:00"
+        }
+    ]
 
-* **Riesgo:** 
-    * *Mitigación:* 
+}
+```
 
-* **Riesgo:** 
-    * *Mitigación:* 
+### Entidad: Medicación (medicacion.json)
+```json
+{
+    "Medicacion":[
+        {
+            "id": 1,
+            "nombre": "Paracetamol"
+        },
+        {
+            "id": 2,
+            "nombre": "Melatonina"
+        },
+        {
+            "id": 3,
+            "nombre": "Sertralina"
+        },
+    ]
+}
+```
+
+### Entidad: Contactos de emergencia (contactos.json)
+```json
+{
+    "Contactos":[
+        {
+            "id": 1,
+            "nombre": "Hijo",
+            "telefono": "+34 600 123 456"
+        },
+        {
+            "id": 2,
+            "nombre": "Nieto",
+            "telefono": "+34 600 999 970"
+        },
+        {
+            "id": 3,
+            "nombre": "Nuera",
+            "telefono": "+34 600 123 485"
+        }
+    ]
+}
+```
+
+
+## Flujos de usuario
+### Flujo principal: Gestión del día a día
+### Flujos secundarios: Medicación, citas y comunicación
+
+## Estructura de vistas (Wireframes)
+Las diferentes pantallas deben verse de manera clara 
+
+### Pantalla 1 — Inicio
+
+### Pantalla 2 — Agenda
+
+### Pantalla 3 — Rutina
+
+### Pantallas 4, 5 y 6 — Medicación, Citas médicas y Comunicación
+
+
+## Decisiones técnicas y de diseño UX/UI
+### Principios de simplicidad y claridad visual
+### Prevención de riesgos (sobrecarga, notificaciones e infantilización)
+
+## Estrategia de tests y validación
+### Criterios de evaluación de usabilidad
+### Ejecución de pruebas con usuarios reales
