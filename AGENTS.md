@@ -1,142 +1,151 @@
-# Instrucciones para asistentes de IA
-Reglas que deben respetar tanto equipo como IA.
-## 1. Contexto del proyecto
+# instrucciones para la ia
 
-El tema del proyecto es la soledad de las personas mayores. La solucion elegida por el grupo consiste en desarrollar una aplicacion orientada a personas mayores con trastorno del espectro autista (TEA), con el objetivo de facilitar el apoyo y organizacion de su informacion mediante una experiencia accesible.
+estas son las reglas que debe seguir la ia al trabajar en el proyecto.
 
-La aplicacion se especificara mediante la metodologia Spec-Driven Development (SDD). Los documentos SDD deberan definir el comportamiento esperado sntes de implementar el MVP.
+## 1. contexto del proyecto
 
-## 2. Objetivo del asistente
+el proyecto trata sobre la soledad de las personas mayores. nuestra idea es crear una aplicacion para personas mayores con trastorno del espectro autista (tea), que les ayude a organizar su informacion de forma sencilla y accesible.
 
-El asistente de IA debera ayudar al grupo a:
+vamos a utilizar la metodologia spec-driven development (sdd), por lo que primero hay que definir bien lo que debe hacer la aplicacion antes de empezar a programarla.
 
-* interpretar y mantener actualizados los requisitos
-* proponer soluciones tecnicas compatibles con el alcance aprobado
-* dividir las funcionalidades en tareas pequeñas y verificables
-* revisar la coherencia entre requisitos, arquitetctura, implementacion y pruebas
-* identificar errores, casos limite y posibles problemas de accesibilidad
-* proponer pruebas para comprobar los criterios de aceptacion
+## 2. objetivo de la ia
 
-el asistente No debera tomar decisiones importantes sobre el alcance o el tratamiento de datos sensibles sin la aprobacion del equipo.
+la ia debe ayudarnos a:
 
-## 3. Documentacion que debe consultar
+- entender y mejorar los requisitos.
+- proponer soluciones que encajen con el proyecto.
+- dividir el trabajo en tareas pequeñas.
+- revisar que los requisitos y el codigo sean coherentes.
+- detectar errores y problemas de accesibilidad.
+- proponer pruebas para comprobar que todo funciona.
 
-Antes de realizar cambios relevantes, el asistente debera revisar los siguientes archivos:
+la ia no puede tomar decisiones importantes sobre las funciones o los datos personales sin consultar al equipo.
 
-* constitution.md -> principios y reglas obligatorias del proyecto
-* spec.md -> funcionalidades, requisitos y criterios de aceptacion
-* plan.md -> tecnologias, arquitectuta, datos y estrategia de pruebas
-* task.md -> tareas previstas, dependencias y responsables
-* uso-ia.md -> registro del uso de inteligencia artificial, cuando sea relevante
+## 3. archivos que debe revisar
 
-Tambien debera consultar el prototipo de Figma indicado en spec.md, siempre que este disponible
+antes de hacer cambios importantes, la ia debe consultar:
 
-Si existe una contradiccion entre documentos, debera señalarla y solicitar una solucion antes de implementar la parte afectada.
+- `constitution.md`: reglas y principios del proyecto.
+- `spec.md`: funciones y requisitos de la aplicacion.
+- `plan.md`: tecnologias, estructura y pruebas.
+- `task.md`: tareas pendientes y su estado.
+- `uso-ia.md`: registro del uso de la ia, cuando sea necesario.
 
-## 4. Tecnolgia y concenciones
+tambien debe revisar el prototipo de figma si esta disponible.
 
-las tecnologias definitivas deberan ser las aprobadas por el grupo y documentadas en el plan.md
+si encuentra contradicciones entre archivos, debe avisar al equipo antes de continuar con la parte afectada.
 
-hasta que se confirme el entorno tecnico:
+## 4. tecnologias y codigo
 
-* no se supondra que el proyecto utiliza un framework concreto
-* no se crearan dependencias nuevas sin justificar su necesidad
-* no se inventaran comandos de instalacion, ejecución o pruebas
-* no se cambiara la arquitectuara acordadda sin aprobacion
-* se mantendra una organizacion clara de los archivos y componentes
+las tecnologias se decidiran entre todos y se anotaran en `plan.md`.
 
-convenciones de codigo
+hasta entonces, la ia debe:
 
-* utilizar nombres descriptivos para variables, funcioones, clases y componentes
-* mantender cada modulo centrado en una responsabilidad
-* evitar duplicaciones innecesarias
-* validar las entradas antes de procesarlas
-* gestionar los errores de forma controlada
-* seguir el formato y las convenciones del lenguaje y las herramientas elegidas
-* añadir comentarios cuando ayuden a comprender decisiones o comportamientos no evidentes.
+- no elegir tecnologias sin permiso.
+- no instalar dependencias sin explicar para que sirven.
+- no inventar comandos.
+- no cambiar la estructura acordada sin consultar.
+- mantener los archivos ordenados.
 
-## 5. Accesibilidad y experiencia de usuario
+al programar debe:
 
-Toda propuesta de interfaz debe respetar los principos definidos en constitution.md
+- usar nombres faciles de entender.
+- evitar repetir codigo sin necesidad.
+- hacer que cada modulo tenga una funcion clara.
+- comprobar los datos antes de utilizarlos.
+- controlar los errores.
+- seguir las normas del lenguaje utilizado.
+- añadir comentarios cuando ayuden a entender el codigo.
 
-el asistente debe: 
+## 5. accesibilidad
 
-* priorizar una navegacion predecibles
-* utilizar etiquetas y mensajes claros
-* evitar elementos visuales innecesariamente complejos
-* comprobar que los estados de error, carga, vacio y exito se comuniquen cuando correspondan
-* evitar depender exclusivamente del color para transmitir informacion
-* mantender la coherencia con el prototipo aprobado
+la aplicacion debe ser facil de entender y utilizar para las personas a las que va dirigida.
 
-no se debera asumir que todas las personas mayores con TEA tienen las mismas necesidades. las decisiones de accesibilidad se justificaran a partir de los usuarios previstos y de las necesidades identificadas por el equipos.
+la ia debe:
 
-## 6. Privacidad y tratamiento de datos
+- crear una navegacion sencilla y clara.
+- utilizar textos y botones faciles de entender.
+- evitar pantallas demasiado cargadas.
+- mostrar mensajes claros cuando haya errores o cuando una accion termine.
+- no utilizar solo colores para transmitir informacion.
+- respetar el diseño de figma aprobado.
 
-el asistente debera tratar los datos personales y medicos como informacion sensible
+no todas las personas mayores con tea tienen las mismas necesidades, por lo que las decisiones de diseño deben adaptarse a los usuarios previstos.
 
-* utilizar datos ficticios durante el desarrollo y pruebas, por lo tanto no debera incluir datos reales en ejemplos de codigo, registros o ca`pturas
-* que la informacion medica no sea accesible para cualquier usuario sin permisos previos
-* no añadir funciones de diagnostico, recomendacion medica o modificacion de tratamiento que no esten aprobadas
-* señalar los riesgos de privacidad y seguridad que detecte
+## 6. privacidad y datos personales
 
-## 7. Flujo de trabajo obligatorio
+la informacion personal y medica debe tratarse con cuidado.
 
-para cada tarea, el asistente debe seguir este proceso:
- 1. identificar el requisito y la tarea relacionados
- 2. Revisar las dependecias y las decisiones tecnicas aplicables
- 3. comprobar si existe la informacion suficiente para comenzar
- 4. proponer una solucion limitada al alcance
- 5. explicar los archivos que se crearan o modificaran
- 6. implementar los cambios solo cuando se solicite
- 7. ejecutar las comprobaciones disponibles
- 8. comparar los resultados con los criterios de aceptacion
- 9. indicar los errores, limitaciones y pruebas pendientes
- 10. proponer actualizaciones de la documentacion si algo ha cambiado
+la ia debe:
 
-## 8. Pruebas y validación
+- utilizar datos inventados para las pruebas y los ejemplos.
+- evitar mostrar datos reales en el codigo o las capturas.
+- proteger la informacion medica y limitar su acceso a los usuarios autorizados.
+- no añadir funciones medicas que no esten aprobadas por el equipo.
+- avisar si encuentra problemas de seguridad o privacidad.
 
-el asistente debera proponer y ejecutar, cuando se disponga d elo necesario, las comprobaciones definidas en el plan.md
+## 7. como debe trabajar la ia
 
-como minimo se revisara:
-* comportamiento esperado de las funcionalidades
-* validacion de campos obligatorios y formatos incorrectos
-* geation de datos inexistentes o incompletos
-* mensajes de error y estados alternativos
-* coherencia entre interfaz y requisitos
-* regresion de las funcionalidades ya implementadas
+para cada tarea, la ia debe seguir estos pasos:
 
-no ha de afirmar que una prueba se ha ejecutado correctamente si no dispone de resultados que lo demuestre
+1. revisar que requisito y tarea hay que completar.
+2. comprobar si hay dependencias o decisiones pendientes.
+3. revisar si tiene suficiente informacion para empezar.
+4. proponer una solucion sencilla.
+5. explicar que archivos va a crear o modificar.
+6. hacer los cambios cuando se le pida.
+7. ejecutar las pruebas disponibles.
+8. comprobar si se cumplen los requisitos.
+9. indicar los errores y las pruebas pendientes.
+10. actualizar la documentacion si es necesario.
 
-## 9. Gestion de dudas
+## 8. pruebas
 
-si falta informacion que se necesita el asistente ha de:
+la ia debe comprobar que las funciones funcionan como se espera.
 
-* explicar que datos falta
-* identificar los documentos que afecta
-* formular una pregunta concreta al grupo
-* marcar la decision como pendiente cuando no sea posible resolverla
-* evitar inventar requisitos, tecnologias, permisos, rutas o comportamientos
+si es posible, debe revisar:
 
-si puede avanzar en una parte independiente de la tarea, podra hacerlo sin dar por confirmadas las decisiones pendientes
+- que las funciones hagan lo que deben.
+- que los campos obligatorios se validen correctamente.
+- que se controlen los datos incorrectos o incompletos.
+- que los mensajes de error sean claros.
+- que la interfaz cumpla los requisitos.
+- que los cambios no estropeen funciones anteriores.
 
-## 10. Comandos de proyecto
+la ia nunca debe decir que una prueba ha funcionado si no la ha ejecutado o no tiene resultados que lo demuestren.
 
-los comandos definitivos se estableceran cuando el grupo confime las tecnologias y la estrucuta del repositorio
+## 9. dudas y decisiones pendientes
 
-* instalacion de dependencias: PENDIENTE de confirmar el entorno
-* inicio de la aplicacion: PENDIENTE de confirmar el entorno
-* ejecucion de pruebas: PENDIENTE de confirmar las herramientas
-* comprobación de formato y calidad: PENDIENTE de confirmar las herramientas
-* construccion para entregar: PENDIENTE de confirmar el sistema de despliegue
+si falta informacion, la ia debe:
 
-el asistente debera sustituir estos marcadores por comandos reales cuando se hayan definido y comprobado.
+- explicar que informacion necesita.
+- indicar que archivos se ven afectados.
+- hacer una pregunta concreta al equipo.
+- dejar la decision como pendiente si no se puede resolver.
+- no inventar requisitos ni decisiones tecnicas.
 
-## 11. Criterio de finalizacion
+si puede avanzar en otra parte de la tarea sin afectar a esa decision, puede hacerlo.
 
-Una tarea solo se considerará terminada cuando:
+## 10. comandos del proyecto
 
-* Se haya cumplido su criterio de finalización en tasks.md.
-* Los requisitos relacionados sigan siendo coherentes.
-* Se hayan ejecutado las pruebas aplicables o se hayan documentado las pendientes.
-* No se hayan introducido cambios de alcance sin aprobación.
-* El equipo pueda revisar y comprender la solución propuesta.
+los comandos se definiran cuando se elijan las tecnologias.
+
+por ahora quedan pendientes:
+
+- instalar las dependencias.
+- iniciar la aplicacion.
+- ejecutar las pruebas.
+- comprobar el formato y la calidad del codigo.
+- preparar la version final.
+
+cuando el equipo confirme las herramientas, la ia debe completar esta seccion con comandos reales y comprobar que funcionan.
+
+## 11. cuando se termina una tarea
+
+una tarea se considera terminada cuando:
+
+- cumple lo indicado en `task.md`.
+- los requisitos siguen siendo correctos.
+- se han ejecutado las pruebas necesarias o se han anotado las pendientes.
+- no se han hecho cambios importantes sin permiso.
+- el equipo puede entender y revisar el resultado.

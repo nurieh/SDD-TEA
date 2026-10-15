@@ -8,59 +8,473 @@
 </head>
 <body>
 
-  <!-- Encabezado común de la aplicación -->
-  <header>
-    <h1>MiPerfil TEA</h1>
-    <p class="subtitulo-header">Consulta de perfiles de personas atendidas</p>
-  </header>
-
-  <!-- Zona de mensajes de error globales -->
-  <div id="mensaje-error" role="alert" aria-live="assertive" hidden>
-    <p id="texto-error"></p>
-    <button id="boton-cerrar-error" type="button">Cerrar aviso</button>
+  <!-- ── Toast de información (mensajes temporales, no errores) ── -->
+  <div id="toast-info" role="status" aria-live="polite" hidden>
+    <span class="toast-icono" aria-hidden="true">ℹ️</span>
+    <p id="texto-toast"></p>
   </div>
 
-  <!-- Vista principal: listado de perfiles -->
-  <main id="vista-listado" role="main">
-    <h2>Perfiles disponibles</h2>
-    <div id="indicador-carga" hidden>
-      <p>Cargando perfiles...</p>
-    </div>
-    <div id="contenedor-tarjetas" aria-label="Listado de perfiles" role="list">
-      <!-- Las tarjetas de perfil se generan dinámicamente desde app.js -->
-    </div>
-  </main>
+  <!-- ── Alerta de error (errores reales, acción del usuario requerida) ── -->
+  <div id="mensaje-error" role="alert" aria-live="assertive" hidden>
+    <span class="error-icono" aria-hidden="true">⚠️</span>
+    <p id="texto-error"></p>
+    <button id="boton-cerrar-error" type="button" aria-label="Cerrar aviso de error">✕</button>
+  </div>
 
-  <!-- Vista de ficha de perfil (oculta por defecto) -->
-  <section id="vista-ficha" hidden>
+  <!-- ═══════════════════════════════════════════
+       VISTA 1: PANTALLA DE BIENVENIDA / CONECTA
+  ════════════════════════════════════════════ -->
+  <div id="vista-inicio" class="vista" hidden>
 
-    <div class="nav-ficha">
-      <button
-        id="boton-volver"
-        type="button"
-        aria-label="Volver al listado de perfiles"
-      >
-        ← Volver
+    <div class="inicio-hero">
+      <div class="inicio-logo" aria-hidden="true">
+        <svg width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect width="56" height="56" rx="16" fill="#7B5EA7"/>
+          <path d="M28 14C20.268 14 14 20.268 14 28s6.268 14 14 14 14-6.268 14-14S35.732 14 28 14zm0 4a10 10 0 110 20 10 10 0 010-20zm0 3a7 7 0 100 14A7 7 0 0028 21zm-1 3h2v4.586l2.707 2.707-1.414 1.414L27 29.414V24z" fill="white"/>
+        </svg>
+      </div>
+      <h1 class="inicio-titulo">MiPerfil TEA</h1>
+      <p class="inicio-subtitulo">Tu día, más fácil.</p>
+    </div>
+
+    <div class="inicio-cuerpo">
+      <p class="inicio-descripcion">
+        Consulta la información de las personas atendidas de forma sencilla y rápida.
+      </p>
+      <button id="boton-conectar" type="button" class="boton-primario boton-grande">
+        Conecta
       </button>
     </div>
 
-    <!-- Datos personales -->
-    <article id="datos-personales">
-      <h2>Datos personales</h2>
-      <dl id="lista-datos-personales">
-        <!-- Generado dinámicamente desde app.js -->
-      </dl>
-    </article>
+  </div>
 
-    <!-- Sección médica -->
-    <article id="seccion-medica">
-      <h2>Información médica</h2>
-      <div id="contenido-medico">
-        <!-- Generado dinámicamente desde app.js -->
+  <!-- ═══════════════════════════════════════════
+       VISTA 2: MENÚ PRINCIPAL
+  ════════════════════════════════════════════ -->
+  <div id="vista-menu" class="vista" hidden>
+
+    <header class="cabecera-menu">
+      <div class="menu-saludo">
+        <div class="menu-saludo-icono" aria-hidden="true">
+          <svg width="32" height="32" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect width="56" height="56" rx="12" fill="#7B5EA7"/>
+            <path d="M28 14C20.268 14 14 20.268 14 28s6.268 14 14 14 14-6.268 14-14S35.732 14 28 14zm0 4a10 10 0 110 20 10 10 0 010-20z" fill="white"/>
+          </svg>
+        </div>
+        <div>
+          <p class="menu-saludo-texto">Hola 👋</p>
+          <h1 class="menu-titulo">Menú principal</h1>
+        </div>
       </div>
-    </article>
+      <p class="menu-subtitulo">¿Qué quieres hacer hoy?</p>
+    </header>
 
+    <main class="contenido-menu">
+      <!-- Acceso principal: Perfiles -->
+      <button id="menu-btn-perfiles" type="button"
+        class="acceso-rapido acceso-rapido--principal" aria-label="Ir a perfiles">
+        <span class="acceso-icono" aria-hidden="true">👤</span>
+        <span class="acceso-etiqueta">Perfiles</span>
+        <span class="acceso-descripcion">Consultar información personal y médica</span>
+      </button>
+
+      <!-- Grid de accesos secundarios -->
+      <div class="grid-accesos" role="list" aria-label="Accesos rápidos">
+
+        <button id="menu-btn-rutina" type="button"
+          class="acceso-rapido acceso-rapido--secundario" aria-label="Ir a Rutina">
+          <span class="acceso-icono" aria-hidden="true">📋</span>
+          <span class="acceso-etiqueta">Rutina</span>
+        </button>
+
+        <button id="menu-btn-agenda" type="button"
+          class="acceso-rapido acceso-rapido--secundario" aria-label="Ir a Agenda">
+          <span class="acceso-icono" aria-hidden="true">📅</span>
+          <span class="acceso-etiqueta">Agenda</span>
+        </button>
+
+        <button id="menu-btn-comunicar" type="button"
+          class="acceso-rapido acceso-rapido--secundario" aria-label="Ir a Comunicar">
+          <span class="acceso-icono" aria-hidden="true">💬</span>
+          <span class="acceso-etiqueta">Comunicar</span>
+        </button>
+
+        <button id="menu-btn-sos" type="button"
+          class="acceso-rapido acceso-rapido--secundario acceso-sos" aria-label="Ir a SOS">
+          <span class="acceso-icono" aria-hidden="true">🆘</span>
+          <span class="acceso-etiqueta">SOS</span>
+        </button>
+
+      </div>
+    </main>
+
+    <nav class="barra-nav" aria-label="Navegación principal">
+      <button type="button" class="nav-item nav-item--activo" aria-label="Inicio" aria-current="page" id="nav-inicio-desde-menu">
+        <span class="nav-icono" aria-hidden="true">🏠</span>
+        <span class="nav-etiqueta">Inicio</span>
+      </button>
+      <button type="button" class="nav-item" aria-label="Perfiles" id="nav-perfiles-desde-menu">
+        <span class="nav-icono" aria-hidden="true">👤</span>
+        <span class="nav-etiqueta">Perfiles</span>
+      </button>
+    </nav>
+  </div>
+
+  <!-- ═══════════════════════════════════════════
+       VISTA 3: LISTADO DE PERFILES
+  ════════════════════════════════════════════ -->
+  <div id="vista-listado" class="vista" hidden>
+
+    <header class="cabecera-listado">
+      <h1 class="cabecera-titulo">Perfiles</h1>
+      <p class="cabecera-subtitulo" id="subtitulo-listado" hidden>Selecciona una persona</p>
+    </header>
+
+    <main class="contenido-listado" id="contenido-listado-main">
+      <!-- Estado: cargando (visible solo mientras fetch está activo) -->
+      <div id="indicador-carga" hidden>
+        <div class="carga-spinner" aria-hidden="true"></div>
+        <p>Cargando perfiles…</p>
+      </div>
+
+      <!-- Estado: contenido (visible cuando hay perfiles) -->
+      <div id="contenedor-tarjetas" role="list" aria-label="Listado de perfiles disponibles" hidden></div>
+
+      <!-- Estado: vacío (visible cuando el array está vacío) -->
+      <div id="estado-vacio-perfiles" hidden>
+        <p class="estado-vacio-icono" aria-hidden="true">👤</p>
+        <p class="estado-vacio-texto">No hay perfiles disponibles.</p>
+      </div>
+
+      <!-- Estado: error de carga (visible solo cuando falla el fetch) -->
+      <div id="error-carga-perfiles" hidden>
+        <p class="estado-error-icono" aria-hidden="true">⚠️</p>
+        <p class="estado-error-texto" id="texto-error-carga"></p>
+        <button id="boton-reintentar" type="button" class="boton-secundario">
+          Reintentar
+        </button>
+      </div>
+    </main>
+
+    <nav class="barra-nav" aria-label="Navegación principal">
+      <button type="button" class="nav-item" aria-label="Inicio" id="nav-inicio-desde-listado">
+        <span class="nav-icono" aria-hidden="true">🏠</span>
+        <span class="nav-etiqueta">Inicio</span>
+      </button>
+      <button type="button" class="nav-item nav-item--activo" aria-label="Perfiles" aria-current="page">
+        <span class="nav-icono" aria-hidden="true">👤</span>
+        <span class="nav-etiqueta">Perfiles</span>
+      </button>
+    </nav>
+  </div>
+
+  <!-- ═══════════════════════════════════════════
+       VISTA 4: FICHA DE PERFIL
+  ════════════════════════════════════════════ -->
+  <section id="vista-ficha" class="vista" hidden>
+
+    <header class="cabecera-ficha">
+      <button id="boton-volver" type="button" class="boton-volver"
+        aria-label="Volver al listado de perfiles">
+        <span aria-hidden="true">←</span> Volver
+      </button>
+      <div class="ficha-avatar" id="ficha-avatar" aria-hidden="true"></div>
+      <div class="ficha-identidad">
+        <h1 class="ficha-nombre" id="ficha-nombre"></h1>
+        <p class="ficha-id" id="ficha-id-texto"></p>
+      </div>
+    </header>
+
+    <div class="ficha-contenido">
+      <article class="tarjeta-seccion" id="datos-personales">
+        <h2 class="tarjeta-titulo">
+          <span aria-hidden="true">👤</span> Datos personales
+        </h2>
+        <dl id="lista-datos-personales" class="lista-campos"></dl>
+      </article>
+
+      <article class="tarjeta-seccion tarjeta-medica" id="seccion-medica">
+        <h2 class="tarjeta-titulo">
+          <span aria-hidden="true">🩺</span> Información médica
+        </h2>
+        <div id="contenido-medico" class="lista-campos-medicos"></div>
+      </article>
+    </div>
+
+    <nav class="barra-nav" aria-label="Navegación principal">
+      <button type="button" class="nav-item" aria-label="Inicio" id="nav-inicio-desde-ficha">
+        <span class="nav-icono" aria-hidden="true">🏠</span>
+        <span class="nav-etiqueta">Inicio</span>
+      </button>
+      <button type="button" class="nav-item nav-item--activo" aria-label="Perfiles" aria-current="page">
+        <span class="nav-icono" aria-hidden="true">👤</span>
+        <span class="nav-etiqueta">Perfiles</span>
+      </button>
+    </nav>
   </section>
+
+  <!-- ═══════════════════════════════════════════
+       VISTA 5: RUTINA / MI DÍA
+  ════════════════════════════════════════════ -->
+  <div id="vista-rutina" class="vista" hidden>
+
+    <header class="cabecera-seccion cabecera-rutina">
+      <button type="button" class="boton-volver" id="volver-desde-rutina"
+        aria-label="Volver al menú principal">
+        <span aria-hidden="true">←</span> Volver
+      </button>
+      <div class="cabecera-seccion-info">
+        <h1 class="cabecera-seccion-titulo">Mi día</h1>
+        <p class="cabecera-seccion-subtitulo" id="rutina-fecha"></p>
+      </div>
+    </header>
+
+    <main class="contenido-scroll">
+      <div id="lista-rutina" class="lista-actividades" role="list" aria-label="Actividades del día">
+        <!-- Generado dinámicamente -->
+      </div>
+    </main>
+
+    <nav class="barra-nav" aria-label="Navegación principal">
+      <button type="button" class="nav-item" id="nav-inicio-desde-rutina" aria-label="Inicio">
+        <span class="nav-icono" aria-hidden="true">🏠</span>
+        <span class="nav-etiqueta">Inicio</span>
+      </button>
+      <button type="button" class="nav-item nav-item--activo" aria-label="Rutina" aria-current="page">
+        <span class="nav-icono" aria-hidden="true">📋</span>
+        <span class="nav-etiqueta">Rutina</span>
+      </button>
+    </nav>
+  </div>
+
+  <!-- ═══════════════════════════════════════════
+       VISTA 6: AGENDA
+  ════════════════════════════════════════════ -->
+  <div id="vista-agenda" class="vista" hidden>
+
+    <header class="cabecera-seccion cabecera-agenda">
+      <button type="button" class="boton-volver" id="volver-desde-agenda"
+        aria-label="Volver al menú principal">
+        <span aria-hidden="true">←</span> Volver
+      </button>
+      <div class="cabecera-seccion-info">
+        <h1 class="cabecera-seccion-titulo">Agenda</h1>
+        <p class="cabecera-seccion-subtitulo">Próximas citas</p>
+      </div>
+    </header>
+
+    <main class="contenido-scroll">
+      <div id="lista-agenda" class="lista-citas" role="list" aria-label="Lista de citas">
+        <!-- Generado dinámicamente -->
+      </div>
+    </main>
+
+    <nav class="barra-nav" aria-label="Navegación principal">
+      <button type="button" class="nav-item" id="nav-inicio-desde-agenda" aria-label="Inicio">
+        <span class="nav-icono" aria-hidden="true">🏠</span>
+        <span class="nav-etiqueta">Inicio</span>
+      </button>
+      <button type="button" class="nav-item nav-item--activo" aria-label="Agenda" aria-current="page">
+        <span class="nav-icono" aria-hidden="true">📅</span>
+        <span class="nav-etiqueta">Agenda</span>
+      </button>
+    </nav>
+  </div>
+
+  <!-- ═══════════════════════════════════════════
+       VISTA 7: COMUNICAR
+  ════════════════════════════════════════════ -->
+  <div id="vista-comunicar" class="vista" hidden>
+
+    <header class="cabecera-seccion cabecera-comunicar">
+      <button type="button" class="boton-volver boton-volver--oscuro" id="volver-desde-comunicar"
+        aria-label="Volver al menú principal">
+        <span aria-hidden="true">←</span> Volver
+      </button>
+      <div class="cabecera-seccion-info">
+        <h1 class="cabecera-seccion-titulo">¿Cómo te sientes?</h1>
+        <p class="cabecera-seccion-subtitulo">Elige lo que mejor te describe</p>
+      </div>
+    </header>
+
+    <main class="contenido-scroll">
+      <div class="grid-emociones" role="list" aria-label="Opciones de comunicación emocional">
+
+        <button type="button" class="tarjeta-emocion" role="listitem"
+          data-emocion="Estoy bien" aria-label="Estoy bien">
+          <span class="emocion-emoji" aria-hidden="true">😊</span>
+          <span class="emocion-texto">Estoy bien</span>
+        </button>
+
+        <button type="button" class="tarjeta-emocion" role="listitem"
+          data-emocion="Estoy preocupado" aria-label="Estoy preocupado">
+          <span class="emocion-emoji" aria-hidden="true">😟</span>
+          <span class="emocion-texto">Estoy preocupado</span>
+        </button>
+
+        <button type="button" class="tarjeta-emocion" role="listitem"
+          data-emocion="Estoy triste" aria-label="Estoy triste">
+          <span class="emocion-emoji" aria-hidden="true">😢</span>
+          <span class="emocion-texto">Estoy triste</span>
+        </button>
+
+        <button type="button" class="tarjeta-emocion" role="listitem"
+          data-emocion="Tengo hambre" aria-label="Tengo hambre">
+          <span class="emocion-emoji" aria-hidden="true">🍽️</span>
+          <span class="emocion-texto">Tengo hambre</span>
+        </button>
+
+        <button type="button" class="tarjeta-emocion" role="listitem"
+          data-emocion="Tengo sed" aria-label="Tengo sed">
+          <span class="emocion-emoji" aria-hidden="true">💧</span>
+          <span class="emocion-texto">Tengo sed</span>
+        </button>
+
+        <button type="button" class="tarjeta-emocion" role="listitem"
+          data-emocion="Estoy normal" aria-label="Estoy normal">
+          <span class="emocion-emoji" aria-hidden="true">😐</span>
+          <span class="emocion-texto">Estoy normal</span>
+        </button>
+
+        <button type="button" class="tarjeta-emocion" role="listitem"
+          data-emocion="Quiero descansar" aria-label="Quiero descansar">
+          <span class="emocion-emoji" aria-hidden="true">😴</span>
+          <span class="emocion-texto">Quiero descansar</span>
+        </button>
+
+        <button type="button" class="tarjeta-emocion" role="listitem"
+          data-emocion="Quiero salir" aria-label="Quiero salir">
+          <span class="emocion-emoji" aria-hidden="true">🚶</span>
+          <span class="emocion-texto">Quiero salir</span>
+        </button>
+
+        <button type="button" class="tarjeta-emocion" role="listitem"
+          data-emocion="Estoy enfadado" aria-label="Estoy enfadado">
+          <span class="emocion-emoji" aria-hidden="true">😠</span>
+          <span class="emocion-texto">Estoy enfadado</span>
+        </button>
+
+        <button type="button" class="tarjeta-emocion" role="listitem"
+          data-emocion="Quiero ayuda" aria-label="Quiero ayuda">
+          <span class="emocion-emoji" aria-hidden="true">🙋</span>
+          <span class="emocion-texto">Quiero ayuda</span>
+        </button>
+
+        <button type="button" class="tarjeta-emocion" role="listitem"
+          data-emocion="Necesito ayuda" aria-label="Necesito ayuda urgente">
+          <span class="emocion-emoji" aria-hidden="true">🆘</span>
+          <span class="emocion-texto">Necesito ayuda</span>
+        </button>
+
+        <button type="button" class="tarjeta-emocion" role="listitem"
+          data-emocion="Quiero hablar" aria-label="Quiero hablar">
+          <span class="emocion-emoji" aria-hidden="true">💬</span>
+          <span class="emocion-texto">Quiero hablar</span>
+        </button>
+
+      </div>
+    </main>
+
+    <!-- Panel de confirmación de emoción seleccionada (oculto por defecto) -->
+    <div id="panel-emocion-seleccionada" hidden>
+      <div class="panel-emocion-contenido">
+        <p class="panel-emocion-label">Has elegido:</p>
+        <p class="panel-emocion-emoji" id="panel-emoji" aria-hidden="true"></p>
+        <p class="panel-emocion-texto" id="panel-texto-emocion"></p>
+        <button type="button" class="boton-primario" id="boton-volver-emociones"
+          aria-label="Volver a elegir">
+          Volver
+        </button>
+      </div>
+    </div>
+
+    <nav class="barra-nav" aria-label="Navegación principal">
+      <button type="button" class="nav-item" id="nav-inicio-desde-comunicar" aria-label="Inicio">
+        <span class="nav-icono" aria-hidden="true">🏠</span>
+        <span class="nav-etiqueta">Inicio</span>
+      </button>
+      <button type="button" class="nav-item nav-item--activo" aria-label="Comunicar" aria-current="page">
+        <span class="nav-icono" aria-hidden="true">💬</span>
+        <span class="nav-etiqueta">Comunicar</span>
+      </button>
+    </nav>
+  </div>
+
+  <!-- ═══════════════════════════════════════════
+       VISTA 8: SOS
+  ════════════════════════════════════════════ -->
+  <div id="vista-sos" class="vista" hidden>
+
+    <header class="cabecera-sos">
+      <button type="button" class="boton-volver boton-volver--oscuro" id="volver-desde-sos"
+        aria-label="Volver al menú principal">
+        <span aria-hidden="true">←</span> Volver
+      </button>
+      <div class="sos-cabecera-info">
+        <span class="sos-cabecera-icono" aria-hidden="true">🆘</span>
+        <h1 class="sos-titulo">SOS</h1>
+        <p class="sos-subtitulo">Contactos de emergencia</p>
+      </div>
+    </header>
+
+    <main class="contenido-scroll">
+      <p class="sos-instruccion">Pulsa el contacto al que quieres llamar:</p>
+
+      <div class="lista-sos" role="list" aria-label="Contactos de emergencia">
+
+        <article class="tarjeta-sos" role="listitem">
+          <div class="sos-contacto-info">
+            <span class="sos-contacto-icono" aria-hidden="true">👩‍⚕️</span>
+            <div>
+              <p class="sos-contacto-nombre">Centro médico</p>
+              <p class="sos-contacto-detalle">Médico de cabecera</p>
+            </div>
+          </div>
+          <a href="tel:+34900000001" class="boton-sos-llamar" aria-label="Llamar al centro médico">
+            📞 Llamar
+          </a>
+        </article>
+
+        <article class="tarjeta-sos" role="listitem">
+          <div class="sos-contacto-info">
+            <span class="sos-contacto-icono" aria-hidden="true">👨‍👩‍👦</span>
+            <div>
+              <p class="sos-contacto-nombre">Familiar</p>
+              <p class="sos-contacto-detalle">Contacto de confianza</p>
+            </div>
+          </div>
+          <a href="tel:+34900000002" class="boton-sos-llamar" aria-label="Llamar al familiar">
+            📞 Llamar
+          </a>
+        </article>
+
+        <article class="tarjeta-sos" role="listitem">
+          <div class="sos-contacto-info">
+            <span class="sos-contacto-icono" aria-hidden="true">🚑</span>
+            <div>
+              <p class="sos-contacto-nombre">Emergencias</p>
+              <p class="sos-contacto-detalle">112 — Emergencias generales</p>
+            </div>
+          </div>
+          <a href="tel:112" class="boton-sos-llamar boton-sos-llamar--urgente" aria-label="Llamar al 112">
+            📞 112
+          </a>
+        </article>
+
+      </div>
+    </main>
+
+    <nav class="barra-nav" aria-label="Navegación principal">
+      <button type="button" class="nav-item" id="nav-inicio-desde-sos" aria-label="Inicio">
+        <span class="nav-icono" aria-hidden="true">🏠</span>
+        <span class="nav-etiqueta">Inicio</span>
+      </button>
+      <button type="button" class="nav-item nav-item--activo" aria-label="SOS" aria-current="page">
+        <span class="nav-icono" aria-hidden="true">🆘</span>
+        <span class="nav-etiqueta">SOS</span>
+      </button>
+    </nav>
+  </div>
 
   <script src="js/app.js"></script>
 </body>
