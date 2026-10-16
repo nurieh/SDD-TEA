@@ -1,4 +1,4 @@
 Identificador completo del grupo: G05 (IGNACIO (NACHO), ANDREA, ADRIÁ, NURIA)
 URL del repositorio privado: https://github.com/nurieh/SDD-TEA
-SHA completo del commit final: [terminla->  git rev-parse HEAD]
+SHA completo del commit final: 1df284464c41e1108710f8fb1d490055b28526e7
 Enlace Figma: https://www.figma.com/design/wFi1na2A2qm5XPMxFVZVLr/PROYECTO-FINAL-GRUPO-5--FIGMA--NACHO--ANDREA--ADRI%C3%81--NURIA-?node-id=0-1&t=BRtDqXkVgRcB81gx-1
