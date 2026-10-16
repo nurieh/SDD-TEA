@@ -1,9 +1,5 @@
 # Informe de implementación del MVP
 
-**Proyecto:** MiPerfil TEA  
-**Metodología:** Spec-Driven Development (SDD)  
-**Fecha:** Junio 2025  
-
 ---
 
 ## 1. Archivos creados y modificados
